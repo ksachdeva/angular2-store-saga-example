@@ -11,6 +11,10 @@ const increment = createSaga(function(){
     });
 });
 
+const remoteMethod = () => new Promise((res, rej) => {
+  setTimeout(() => res(20), 1000);
+});
+
 const asyncEffect = createSaga(function sagaFactory(http: Http) {
 
   return function loginSaga(iteration$: Observable<any>) {
@@ -18,7 +22,7 @@ const asyncEffect = createSaga(function sagaFactory(http: Http) {
       .filter(iteration => iteration.action.type === DECREMENT)
       .map(iteration => iteration.action.payload)
       .mergeMap(payload => {
-        return Observable.of(20)
+        return Observable.fromPromise(remoteMethod())
           .map(res => {
             return {
               type: INCREMENT
