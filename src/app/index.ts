@@ -1,4 +1,5 @@
 import {HTTP_PROVIDERS} from 'angular2/http';
+import {ROUTER_PROVIDERS} from 'angular2/router';
 import {provideStore, usePreMiddleware, usePostMiddleware, Middleware} from "@ngrx/store";
 import {installSagaMiddleware} from 'store-saga';
 import {counter} from './reducer';
@@ -18,6 +19,7 @@ const stateLog: Middleware = state => {
 
 export const APP_PROVIDERS = [
   HTTP_PROVIDERS,
+  ROUTER_PROVIDERS,
   provideStore({counter}, {counter: 0}),
   usePreMiddleware(actionLog),
   usePostMiddleware(stateLog),

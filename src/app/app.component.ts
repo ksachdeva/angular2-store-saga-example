@@ -1,37 +1,30 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
-import {Store} from '@ngrx/store';
-import {INCREMENT, DECREMENT, RESET} from './actions';
-import {Observable} from 'rxjs';
+import {RouteConfig, RouterOutlet, ROUTER_DIRECTIVES } from 'angular2/router';
 
-interface AppState {
-  counter: number;
-}
+import {HomeComponent} from './home';
+import {AboutComponent} from './about';
 
 @Component({
   selector: 'app',
+  pipes: [ ],
   providers: [ ],
+  directives: [ ROUTER_DIRECTIVES ],
   template: `
-      <button (click)="increment()">Increment</button>
-        <div>Current Count: {{ counter | async }}</div>
-        <button (click)="decrement()">Decrement</button>
-    `
+    <ul>
+      <li >
+        <a [routerLink]=" ['Home'] ">Home</a>
+      </li>
+      <li >
+        <a [routerLink]=" ['About'] ">About</a>
+      </li>
+    </ul>
+    <router-outlet></router-outlet>
+  `
 })
+@RouteConfig([
+  { path: '/',      name: 'Index', component: HomeComponent, useAsDefault: true },
+  { path: '/home',  name: 'Home',  component: HomeComponent },
+  { path: '/about',  name: 'About',  component: AboutComponent },
+])
 export class App {
-    counter: Observable<number>;
-
-    constructor(public store: Store<AppState>){
-        this.counter = store.select<number>('counter');
-    }
-
-    increment(){
-        this.store.dispatch({ type: INCREMENT });
-    }
-
-    decrement(){
-        this.store.dispatch({ type: DECREMENT });
-    }
-
-    reset(){
-        this.store.dispatch({ type: RESET });
-    }
 }
