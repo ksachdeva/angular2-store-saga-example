@@ -1,5 +1,5 @@
 # angular2-store-saga-example
-Example application showing how to use @ngrx/store &amp; store-saga
+Example application showing how to use [@ngrx/store](https://github.com/ngrx/store) &amp; [store-saga](https://github.com/CodeSequence/store-saga)
 
 # setup
 npm install
@@ -41,7 +41,6 @@ const asyncEffect2 = createSaga(function sagaFactory(http: Http) {
 ```typescript
 // a saga using angular 2 Router to navigate to a page 
 const gotoAboutPageEffect = createSaga(function sagaFactory(router: Router) {
-  console.log(router);
   return function aboutSaga(iteration$: Observable<any>) {
     return iteration$
       .filter(iteration => iteration.action.type === GOTO_ABOUT)
