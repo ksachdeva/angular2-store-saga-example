@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation} from 'angular2/core';
-import {RouteConfig, Router} from 'angular2/router';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {RouteConfig, Router} from '@angular/router-deprecated';
 
 import {Store} from '@ngrx/store';
 import {INCREMENT, DECREMENT, RESET, GOTO_ABOUT} from './../actions';
@@ -28,25 +28,25 @@ interface AppState {
   `
 })
 export class HomeComponent {
-    counter: Observable<number>;
+  counter: Observable<number>;
 
-    constructor(public store: Store<AppState>){
-        this.counter = store.select<number>('counter');
-    }
+  constructor(public store: Store<AppState>) {
+    this.counter = store.select<number>('counter');
+  }
 
-    increment(){
-        this.store.dispatch({ type: INCREMENT });
-    }
+  increment() {
+    this.store.dispatch({ type: INCREMENT });
+  }
 
-    decrement(){
-        this.store.dispatch({ type: DECREMENT });
-    }
+  decrement() {
+    this.store.dispatch({ type: DECREMENT });
+  }
 
-    reset(){
-        this.store.dispatch({ type: RESET });
-    }
+  reset() {
+    this.store.dispatch({ type: RESET });
+  }
 
-    gotoAbout() {
-      this.store.dispatch({ type: GOTO_ABOUT});
-    }
+  gotoAbout() {
+    this.store.dispatch({ type: GOTO_ABOUT });
+  }
 }

@@ -1,14 +1,14 @@
-import {Component, ViewEncapsulation} from 'angular2/core';
-import {RouteConfig, RouterOutlet, ROUTER_DIRECTIVES } from 'angular2/router';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {RouteConfig, RouterOutlet, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 import {HomeComponent} from './home';
 import {AboutComponent} from './about';
 
 @Component({
   selector: 'app',
-  pipes: [ ],
-  providers: [ ],
-  directives: [ ROUTER_DIRECTIVES ],
+  pipes: [],
+  providers: [],
+  directives: [ROUTER_DIRECTIVES],
   template: `
     <ul>
       <li >
@@ -22,9 +22,9 @@ import {AboutComponent} from './about';
   `
 })
 @RouteConfig([
-  { path: '/',      name: 'Index', component: HomeComponent, useAsDefault: true },
-  { path: '/home',  name: 'Home',  component: HomeComponent },
-  { path: '/about',  name: 'About',  component: AboutComponent },
+  { path: '/', name: 'Index', component: HomeComponent, useAsDefault: true },
+  { path: '/home', name: 'Home', component: HomeComponent },
+  { path: '/about', name: 'About', component: AboutComponent }
 ])
 export class App {
 }

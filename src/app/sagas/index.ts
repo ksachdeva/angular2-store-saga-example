@@ -1,16 +1,16 @@
-import {Http} from 'angular2/http';
-import {Router} from 'angular2/router';
+import {Http} from '@angular/http';
+import {Router} from '@angular/router-deprecated';
 import {Observable} from 'rxjs';
 import {createSaga} from 'store-saga';
 import {INCREMENT, DECREMENT, GOTO_ABOUT} from './../actions';
 
 const BASE_WEB_URL = 'http://jsonplaceholder.typicode.com/';
 
-const increment = createSaga(function(){
+const increment = createSaga(function() {
   return iteration$ => iteration$
     .filter(iter => iter.action.type === DECREMENT)
     .map(() => {
-      return { type: INCREMENT}
+      return { type: INCREMENT };
     });
 });
 
@@ -29,7 +29,7 @@ const asyncEffect = createSaga(function sagaFactory(http: Http) {
           .map(res => {
             return {
               type: INCREMENT
-            }
+            };
           })
           .catch(err => {
             return Observable.of({
@@ -54,7 +54,7 @@ const asyncEffect2 = createSaga(function sagaFactory(http: Http) {
             return {
               type: INCREMENT,
               payload: res.json()
-            }
+            };
           })
           .catch(err => {
             return Observable.of({
@@ -78,7 +78,7 @@ const gotoAboutPageEffect = createSaga(function sagaFactory(router: Router) {
           .map(res => {
             return {
               type: INCREMENT
-            }
+            };
           })
           .catch(err => {
             return Observable.of({

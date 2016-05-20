@@ -1,26 +1,26 @@
-import {HTTP_PROVIDERS} from 'angular2/http';
-import {ROUTER_PROVIDERS} from 'angular2/router';
+import {HTTP_PROVIDERS} from '@angular/http';
+import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 import {provideStore, usePreMiddleware, usePostMiddleware, Middleware} from "@ngrx/store";
 import {installSagaMiddleware} from 'store-saga';
 import {counter} from './reducer';
 import sagas from './sagas';
 
 const actionLog: Middleware = action => {
-    return action.do(val => {
-        console.warn('DISPATCHED ACTION: ', val)
-    });
+  return action.do(val => {
+    console.warn('DISPATCHED ACTION: ', val)
+  });
 };
 
 const stateLog: Middleware = state => {
-    return state.do(val => {
-        console.log('NEW STATE: ', val)
-    });
+  return state.do(val => {
+    console.log('NEW STATE: ', val)
+  });
 };
 
 export const APP_PROVIDERS = [
   HTTP_PROVIDERS,
   ROUTER_PROVIDERS,
-  provideStore({counter}, {counter: 0}),
+  provideStore({ counter }, { counter: 0 }),
   usePreMiddleware(actionLog),
   usePostMiddleware(stateLog),
   installSagaMiddleware(...sagas)
